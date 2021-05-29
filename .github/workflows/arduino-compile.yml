@@ -29,11 +29,10 @@ jobs:
         run: |
           arduino-cli core update-index --additional-urls ${{ matrix.additional-urls }}
           arduino-cli core install ${{ matrix.arduino-platform }} --additional-urls ${{ matrix.additional-urls }}
-      - name: Create arduino libraries folder
-        run: mkdir -p ~/Arduino/libraries
-      - name: Checkout espcd-library
-        run: git clone https://github.com/espcd/espcd-library.git ~/Arduino/libraries/espcd-library
-      - run: ls ~/Arduino/libraries
-      - run: ls ~/Arduino/libraries/espcd-library
+      - name: Install dependencies
+        run: |
+          mkdir -p ~/Arduino/libraries
+          git clone https://github.com/espcd/espcd-library.git ~/Arduino/libraries/espcd-library
+          arduino-cli lib install ArduinoJson
       - name: Compile sketch
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} espcd-example.ino
