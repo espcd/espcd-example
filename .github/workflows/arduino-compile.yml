@@ -36,5 +36,7 @@ jobs:
         with:
           repository: espcd/espcd-library
           path: ~/Arduino/libraries/espcd-library
+      - run: ls ~/Arduino/libraries
+      - run: ls ~/Arduino/libraries/espcd-library
       - name: Compile sketch
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} espcd-example.ino
