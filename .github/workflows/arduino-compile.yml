@@ -33,6 +33,7 @@ jobs:
         run: |
           mkdir -p ~/Arduino/libraries
           git clone https://github.com/espcd/espcd-library.git ~/Arduino/libraries/espcd-library
+          arduino-cli lib install AutoConnect
           arduino-cli lib install ArduinoJson
       - name: Compile sketch
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} espcd-example.ino
