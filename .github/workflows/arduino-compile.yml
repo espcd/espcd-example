@@ -32,10 +32,7 @@ jobs:
       - name: Create arduino libraries folder
         run: mkdir -p ~/Arduino/libraries
       - name: Checkout espcd-library
-        uses: actions/checkout@v2
-        with:
-          repository: espcd/espcd-library
-          path: ./../Arduino/libraries/espcd-library
+        run: git clone https://github.com/espcd/espcd-library.git ~/Arduino/libraries/espcd-library
       - run: ls ~/Arduino/libraries
       - run: ls ~/Arduino/libraries/espcd-library
       - name: Compile sketch
