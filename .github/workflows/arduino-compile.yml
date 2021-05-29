@@ -29,5 +29,12 @@ jobs:
         run: |
           arduino-cli core update-index --additional-urls ${{ matrix.additional-urls }}
           arduino-cli core install ${{ matrix.arduino-platform }} --additional-urls ${{ matrix.additional-urls }}
+      - name: Create arduino libraries folder
+        run: mkdir -p ~/Arduino/libraries
+      - name: Checkout espcd-library
+        uses: actions/checkout@v2
+        with:
+          repository: espcd/espcd-library
+          path: ~/Arduino/libraries/espcd-library
       - name: Compile sketch
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} espcd-example.ino
