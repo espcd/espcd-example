@@ -42,4 +42,4 @@ jobs:
       - name: Compile sketch
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} --output-dir /tmp espcd-example.ino
       - name: Upload firmware
-        run: curl --include --request POST https://api.espcd.duckdns.org/firmwares -F"[firmware]product_id=${{ matrix.product }}" -F "[firmware]title=test" -F "[firmware]description=https://github.com/${{ github.repository }}/commit/${{ github.sha }}" -F "[firmware]version=${{ github.sha }}" -F "[firmware]model=${{ matrix.model }}" -F "[firmware]content=@/tmp/espcd-example.ino.bin"
+        run: curl --silent --show-error --fail --include --request POST https://api.espcd.duckdns.org/firmwares -F"[firmware]product_id=${{ matrix.product }}" -F "[firmware]title=test" -F "[firmware]description=https://github.com/${{ github.repository }}/commit/${{ github.sha }}" -F "[firmware]version=${{ github.sha }}" -F "[firmware]model=${{ matrix.model }}" -F "[firmware]content=@/tmp/espcd-example.ino.bin"
