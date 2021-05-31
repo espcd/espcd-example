@@ -12,34 +12,18 @@ jobs:
 
     strategy:
       matrix:
-        model: ["esp32", "esp8266"]
+        fqbn: ["esp32:esp32:esp32", "esp8266:esp8266:generic"]
         include:
-          - model: "esp32"
-            platform: "esp32:esp32"
-            fqbn: "esp32:esp32:esp32"
-            additional-urls: "https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json"
+          - fqbn: "esp32:esp32:esp32"
             product: "8ab5ec33-a659-438e-a6ca-3db62b2141f0"
-          - model: "esp8266"
-            platform: "esp8266:esp8266"
-            fqbn: "esp8266:esp8266:generic"
-            additional-urls: "https://arduino.esp8266.com/stable/package_esp8266com_index.json"
+          - fqbn: "esp8266:esp8266:generic"
             product: "a56854b9-d4a3-412c-8966-aa2ca598ec5b"
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup arduino cli
-        uses: arduino/setup-arduino-cli@v1
-      - name: Install core
-        run: |
-          arduino-cli core update-index --additional-urls ${{ matrix.additional-urls }}
-          arduino-cli core install ${{ matrix.platform }} --additional-urls ${{ matrix.additional-urls }}
-      - name: Install dependencies
-        run: |
-          mkdir -p ~/Arduino/libraries
-          git clone https://github.com/espcd/espcd-library.git ~/Arduino/libraries/espcd-library
-          arduino-cli lib install AutoConnect
-          arduino-cli lib install ArduinoJson
-      - name: Compile sketch
-        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} --output-dir /tmp espcd-example.ino
-      - name: Upload firmware
-        run: curl --silent --show-error --fail --include --request POST https://api.espcd.duckdns.org/firmwares -F"[firmware]product_id=${{ matrix.product }}" -F "[firmware]title=test" -F "[firmware]description=https://github.com/${{ github.repository }}/commit/${{ github.sha }}" -F "[firmware]version=${{ github.sha }}" -F "[firmware]model=${{ matrix.model }}" -F "[firmware]content=@/tmp/espcd-example.ino.bin"
+      - uses: espcd/espcd-action@master
+        with:
+          fqbn: ${{ matrix.fqbn }}
+          product: ${{ matrix.product }}
+          sketch: ./espcd-example.ino
+          title: 'test title'
+          description: 'test description'
