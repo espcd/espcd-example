@@ -20,6 +20,9 @@ jobs:
             product: "a56854b9-d4a3-412c-8966-aa2ca598ec5b"
 
     steps:
+      - uses: actions/checkout@v2
+      - name: Setup arduino cli
+        uses: arduino/setup-arduino-cli@v1
       - uses: espcd/espcd-action@master
         with:
           fqbn: ${{ matrix.fqbn }}
