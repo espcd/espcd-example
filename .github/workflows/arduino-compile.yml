@@ -25,6 +25,7 @@ jobs:
         uses: arduino/setup-arduino-cli@v1
       - uses: espcd/espcd-action@master
         with:
+          api_key: ${{ secrets.API_KEY }}
           fqbn: ${{ matrix.fqbn }}
           product: ${{ matrix.product }}
           sketch: ./espcd-example.ino
