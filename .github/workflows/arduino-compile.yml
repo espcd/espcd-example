@@ -13,11 +13,6 @@ jobs:
     strategy:
       matrix:
         fqbn: ["esp32:esp32:esp32", "esp8266:esp8266:generic"]
-        include:
-          - fqbn: "esp32:esp32:esp32"
-            product: "8ab5ec33-a659-438e-a6ca-3db62b2141f0"
-          - fqbn: "esp8266:esp8266:generic"
-            product: "a56854b9-d4a3-412c-8966-aa2ca598ec5b"
 
     steps:
       - uses: actions/checkout@v2
@@ -27,7 +22,7 @@ jobs:
         with:
           api_key: ${{ secrets.API_KEY }}
           fqbn: ${{ matrix.fqbn }}
-          product: ${{ matrix.product }}
+          product: 8ab5ec33-a659-438e-a6ca-3db62b2141f0
           sketch: ./espcd-example.ino
           title: 'test title'
           description: 'test description'
