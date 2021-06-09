@@ -16,6 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Replace placeholder with api key
+        run: sed -i "s|{{SECRETS_API_KEY}}|${{ secrets.API_KEY }}|" ./espcd-example.ino
       - name: Setup arduino cli
         uses: arduino/setup-arduino-cli@v1
       - uses: espcd/espcd-action@master

@@ -42,6 +42,7 @@ void setup() {
   Serial.println();
 
   espcd.setUrl("https://api.espcd.duckdns.org/");
+  espcd.setApiKey("{{SECRETS_API_KEY}}");
   espcd.setCert(cert);
   espcd.setProductId("8ab5ec33-a659-438e-a6ca-3db62b2141f0");
   espcd.setup();
