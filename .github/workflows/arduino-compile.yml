@@ -24,7 +24,7 @@ jobs:
         with:
           api_key: ${{ secrets.API_KEY }}
           fqbn: ${{ matrix.fqbn }}
-          product: 8ab5ec33-a659-438e-a6ca-3db62b2141f0
+          product: 7bba86f9-c7b1-4168-af29-41f90438abc4
           sketch: ./espcd-example.ino
           title: 'test title'
           description: 'test description'
