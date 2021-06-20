@@ -18,8 +18,8 @@ If a product id is specified, the uploaded firmware is automatically associated 
 
 Open `.github/workflows/arduino-compile.yml`.
 
-In the matrix, adjust the `fqbn`'s for which the sketch is to be compiled and the corresponding `product` ids.
+In the matrix, adjust the `fqbn`'s for which the sketch is to be compiled.
 
-In the steps adjust the `sketch`, `title` and `description`. (More information [here](https://github.com/espcd/espcd-action)).
+In the steps adjust the `sketch`. (More information [here](https://github.com/espcd/espcd-action)).
 
 Create a new token in the espcd-frontend and add this token as new secret `API_KEY` in the github repository settings.
