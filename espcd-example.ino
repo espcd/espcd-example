@@ -44,7 +44,7 @@ void setup() {
   espcd.setUrl("https://api.espcd.duckdns.org/");
   espcd.setApiKey("{{SECRETS_API_KEY}}");
   espcd.setCert(cert);
-  espcd.setProductId("7bba86f9-c7b1-4168-af29-41f90438abc4");
+  espcd.setProductId("f38bb157-4ae0-4a32-9f29-122a52405f67");
   espcd.setup();
 
 #if defined(ARDUINO_ARCH_ESP32)
