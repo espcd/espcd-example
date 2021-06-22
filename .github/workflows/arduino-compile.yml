@@ -13,6 +13,11 @@ jobs:
     strategy:
       matrix:
         fqbn: ["esp32:esp32:esp32", "esp8266:esp8266:generic"]
+        include:
+          - fqbn: "esp32:esp32:esp32"
+            compression: "none"
+          - fqbn: "esp8266:esp8266:generic"
+            compression: "gzip"
 
     steps:
       - uses: actions/checkout@v2
@@ -28,3 +33,4 @@ jobs:
           sketch: ./espcd-example.ino
           title: 'test title'
           description: 'test description'
+          compression: ${{ matrix.compression }}
